@@ -1,0 +1,24 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 07/08/2017, 07:41:03 PM
+    Author     : Carlos
+*/
+
+.jfx-btn-general{
+    -fx-background-color: #64B5F6;
+}
+.jfx-btn-general:hover{
+    -fx-background-color: #FFC107;
+}
+.jfx-btnimg-tbveliminar{
+    -fx-opacity: 0.8;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: contain;
+    -fx-background-color: #f44336;
+    -fx-background-image : url("../resources/Eliminar-48.png");
+}

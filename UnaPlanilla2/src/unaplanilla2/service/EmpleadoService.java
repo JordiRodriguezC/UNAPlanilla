@@ -1,0 +1,139 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package unaplanilla2.service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.ws.rs.core.GenericType;
+import unaplanilla2.model.EmpleadoDto;
+import unaplanilla2.util.Request;
+import unaplanilla2.util.Respuesta;
+
+/**
+ *
+ * @author Carlos
+ */
+public class EmpleadoService {
+
+    
+    public Respuesta getUsuario(String usuario, String clave) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("usuario", usuario);
+            parametros.put("clave", clave);
+            Request request = new Request("EmpleadoController/usuario", "/{usuario}/{clave}", parametros);
+            request.get();
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+
+            EmpleadoDto empleado = (EmpleadoDto) request.readEntity(EmpleadoDto.class);
+            return new Respuesta(true, "", "", "Empleado", empleado);
+
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE, "Error obteniendo el usuario [" + usuario + "]", ex);
+            return new Respuesta(false, "Error obteniendo el usuario.", "getUsuario " + ex.getMessage());
+        }
+    }
+
+    public Respuesta getEmpleado(Long id) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("id", id);
+            Request request = new Request("EmpleadoController/empleado", "/{id}", parametros);
+            request.get();
+
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+
+            EmpleadoDto empleado = (EmpleadoDto) request.readEntity(EmpleadoDto.class);
+            return new Respuesta(true, "", "", "Empleado", empleado);
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE, "Error obteniendo el empleado [" + id + "]", ex);
+            return new Respuesta(false, "Error obteniendo el empleado.", "getEmpleado " + ex.getMessage());
+        }
+    }
+
+    public Respuesta getEmpleados(String cedula, String nombre, String pApellido) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("cedula", cedula);
+            parametros.put("nombre", nombre);
+            parametros.put("pApellido", pApellido);
+            Request request = new Request("EmpleadoController/empleados", "/{cedula}/{nombre}/{pApellido}", parametros);
+            request.get();
+
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+             List<EmpleadoDto> empleados = (List<EmpleadoDto>) request.readEntity(new GenericType<List<EmpleadoDto>>() {
+            });
+            return new Respuesta(true, "", "", "Empleados", empleados);
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE, "Error obteniendo empleados.", ex);
+            return new Respuesta(false, "Error obteniendo empleados.", "getEmpleados " + ex.getMessage());
+        }
+    }
+
+    public Respuesta getEmpleados() {
+        try {
+            Request request = new Request("EmpleadoController/empleados");
+            request.get();
+
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+
+            List<EmpleadoDto> empleados = (List<EmpleadoDto>) request.readEntity(new GenericType<List<EmpleadoDto>>() {
+            });
+
+            return new Respuesta(true, "", "", "Empleados", empleados);
+        } catch (Exception ex) {
+            return new Respuesta(false, "", "", "Empleados","getEmpleados " + ex.getMessage());
+        }
+    }
+
+    public Respuesta guardarEmpleado(EmpleadoDto empleado) {
+        try {
+            Request request = new Request("EmpleadoController/guardar");
+            request.post(empleado);
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+            empleado = (EmpleadoDto) request.readEntity(EmpleadoDto.class);
+
+            return new Respuesta(true, "", "", "Empleado", empleado);
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE, "Error guardando el empleado.", ex);
+            return new Respuesta(false, "Error guardando el empleado.", "guardarEmpleado " + ex.getMessage());
+        }
+    }
+
+    public Respuesta eliminarEmpleado(Long id) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("id", id);
+            Request request = new Request("EmpleadoController/empleado","/{id}",parametros);
+            request.delete();
+
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+            return new Respuesta(true, "", "");
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE, "Error eliminando el empleado.", ex);
+            return new Respuesta(false, "Error eliminando el empleado.", "eliminarEmpleado " + ex.getMessage());
+        }
+    }   
+}
