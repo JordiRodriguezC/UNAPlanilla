@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement(name = "TipoPlanillaDto")
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class TipoPlanillaDto {
+
     @XmlTransient
     public SimpleStringProperty tplaId;
     @XmlTransient
@@ -42,6 +43,8 @@ public class TipoPlanillaDto {
     @XmlTransient
     private Boolean modificado;
     @XmlTransient
+    private Long tplaVersion;
+    @XmlTransient
     ObservableList<EmpleadoDto> empleados;
     @XmlTransient
     List<EmpleadoDto> empleadosEliminados;
@@ -53,6 +56,7 @@ public class TipoPlanillaDto {
         this.tplaDescripcion = new SimpleStringProperty();
         this.tplaPlaxmes = new SimpleStringProperty();
         this.tplaEstado = new SimpleBooleanProperty(true);
+        this.tplaVersion = new Long(0);
         empleados = FXCollections.observableArrayList();
         empleadosEliminados = new ArrayList<>();
     }
@@ -153,9 +157,19 @@ public class TipoPlanillaDto {
         this.empleadosEliminados = empleadosEliminados;
     }
 
+    public Long getTplaVersion() {
+        return tplaVersion;
+    }
+
+    public void setTplaVersion(Long tplaVersion) {
+        this.tplaVersion = tplaVersion;
+    }
+
     @Override
     public String toString() {
-        return "TipoPlanillaDto{" + "tplaId=" + tplaId.get() + ", tplaCodigo=" + tplaCodigo.getName() + '}';
+        return "TipoPlanillaDto{" + "tplaId=" + tplaId + ", tplaCodigo=" + tplaCodigo + ", tplaDescripcion=" + tplaDescripcion + ", tplaPlaxmes=" + tplaPlaxmes + ", tplaAnoultpla=" + tplaAnoultpla + ", tplaMesultpla=" + tplaMesultpla + ", tplaNumultpla=" + tplaNumultpla + ", tplaEstado=" + tplaEstado + ", modificado=" + modificado + ", tplaVersion=" + tplaVersion + ", empleados=" + empleados + ", empleadosEliminados=" + empleadosEliminados + '}';
     }
+
+    
 
 }

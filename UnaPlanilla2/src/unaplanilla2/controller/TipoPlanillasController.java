@@ -189,6 +189,7 @@ public class TipoPlanillasController extends Controller implements Initializable
         txtDescripcion.textProperty().bindBidirectional(tipoPlanilla.tplaDescripcion);
         txtPlanillasMes.textProperty().bindBidirectional(tipoPlanilla.tplaPlaxmes);
         chkActivo.selectedProperty().bindBidirectional(tipoPlanilla.tplaEstado);
+        
     }
 
     private void unbindTipoPlanilla() {
@@ -212,6 +213,7 @@ public class TipoPlanillasController extends Controller implements Initializable
             txtIdEmpleado.textProperty().bind(this.empleado.empId);
         }
         txtNombreEmpleado.textProperty().bindBidirectional(this.empleado.empNombre);
+        
     }
 
     private void unbindEmpleado() {
@@ -321,6 +323,8 @@ public class TipoPlanillasController extends Controller implements Initializable
             } else {
 
                 TipoPlanillaService service = new TipoPlanillaService();
+                tipoPlanilla.setTplaVersion(tipoPlanilla.getTplaVersion()+1);
+                System.out.println(tipoPlanilla);
                 Respuesta respuesta = service.guardarTipoPlanilla(tipoPlanilla);
                 if (!respuesta.getEstado()) {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar tipo planilla", getStage(), respuesta.getMensaje());
