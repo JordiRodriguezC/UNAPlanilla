@@ -40,6 +40,7 @@ import unaplanilla2.model.EmpleadoDto;
 import unaplanilla2.model.TipoPlanillaDto;
 import unaplanilla2.service.EmpleadoService;
 import unaplanilla2.service.TipoPlanillaService;
+import unaplanilla2.util.FlowController;
 import unaplanilla2.util.Formato;
 import unaplanilla2.util.Mensaje;
 import unaplanilla2.util.Respuesta;
@@ -238,7 +239,7 @@ public class TipoPlanillasController extends Controller implements Initializable
 
     @FXML
     private void buscarTipoPlanilla(ActionEvent event) {
-        //FlowController.getInstance().goViewInWindowModal("Busqueda", getStage(), true);
+        FlowController.getInstance().goViewInWindowModal("BuscarPlanillas", getStage(), true);
     }
 
     @Override

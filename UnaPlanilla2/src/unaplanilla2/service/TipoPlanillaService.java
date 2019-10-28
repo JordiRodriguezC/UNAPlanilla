@@ -7,6 +7,7 @@ package unaplanilla2.service;
 
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
+import javax.ws.rs.core.GenericType;
 //import unaplanilla2.model.Empleado;
 import unaplanilla2.model.EmpleadoDto;
 import unaplanilla2.model.TipoPlanillaDto;
@@ -30,6 +32,27 @@ public class TipoPlanillaService {
     //EntityManager em = EntityManagerHelper.getInstance().getManager();
     private EntityTransaction et;
 
+    public Respuesta getPlanillas(String codigo, String id, String planillasPorMes) {
+        try {
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("codigo", codigo);
+            parametros.put("id", id);
+            parametros.put("planillasPorMes", planillasPorMes);
+            Request request = new Request("TipoPlanillaController/planillas", "/{codigo}/{id}/{planillasPorMes}", parametros);
+            request.get();
+
+            if (request.isError()) {
+                return new Respuesta(false, request.getError(), "");
+            }
+             List<EmpleadoDto> empleados = (List<EmpleadoDto>) request.readEntity(new GenericType<List<EmpleadoDto>>() {
+            });
+            return new Respuesta(true, "", "", "Planillas", empleados);
+        } catch (Exception ex) {
+            Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE, "Error obteniendo empleados.", ex);
+            return new Respuesta(false, "Error obteniendo empleados.", "getEmpleados " + ex.getMessage());
+        }
+    }
+    
     public Respuesta getTipoPlanilla(Long id) {
         try {
             Map<String, Object> parametros = new HashMap<>();
