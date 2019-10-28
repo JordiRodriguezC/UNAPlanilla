@@ -51,6 +51,8 @@ public class EmpleadoDto {
     private String Token;
     @XmlTransient
     private Boolean modificado;
+    @XmlTransient
+    private Long empVersion;
 
     public String getToken() {
         return Token;
@@ -75,6 +77,7 @@ public class EmpleadoDto {
         this.empFingreso = new SimpleObjectProperty();
         this.empFsalida = new SimpleObjectProperty();
         this.empEstado = new SimpleBooleanProperty(true);
+        this.empVersion = new Long(0);
 
     }
 
@@ -197,6 +200,16 @@ public class EmpleadoDto {
         this.modificado = modificado;
     }
 
+    public Long getEmpVersion() {
+        return empVersion;
+    }
+
+    public void setEmpVersion(Long empVersion) {
+        this.empVersion = empVersion;
+    }
+    
+    
+    
     @Override
     public String toString() {
         return "EmpleadoDto{" + "empId=" + empId + ", empNombre=" + empNombre + ", empPapellido=" + empPapellido + ", empSapellido=" + empSapellido + ", empCedula=" + empCedula + ", empGenero=" + empGenero + ", empCorreo=" + empCorreo + ", empAdministrador=" + empAdministrador + ", empUsuario=" + empUsuario + ", empClave=" + empClave + ", empFingreso=" + empFingreso + ", empFsalida=" + empFsalida + ", empEstado=" + empEstado + '}';

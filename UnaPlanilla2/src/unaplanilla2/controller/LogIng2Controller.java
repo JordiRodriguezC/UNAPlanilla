@@ -88,7 +88,6 @@ public class LogIng2Controller extends Controller implements Initializable {
                         }
                         ((Stage) btnIngresar.getScene().getWindow()).close();
                     }
-
                 } else {
                  //   new Mensaje().showModal(Alert.AlertType.ERROR, "Ingreso", getStage(), respuesta.getMensaje());
                 }
