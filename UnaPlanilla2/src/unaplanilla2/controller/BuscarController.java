@@ -75,7 +75,6 @@ public class BuscarController extends Controller {
 
     @FXML
     private void Filtrar(ActionEvent event) {
-
         ced = (!txtCedula.getText().isEmpty()) ? "%" + txtCedula.getText().toUpperCase() + "%" : "%";
         nom = (!txtNombre.getText().isEmpty()) ? "%" + txtNombre.getText().toUpperCase() + "%" : "%";
         apellido = (!txtApellido.getText().isEmpty()) ? "%" + txtApellido.getText().toUpperCase() + "%" : "%";
@@ -91,7 +90,6 @@ public class BuscarController extends Controller {
 
             System.out.println(resp.getMensaje());
         }
-
     }
 
     private void MostrarDatos(KeyEvent event) {

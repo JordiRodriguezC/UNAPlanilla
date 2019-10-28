@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="unaplanilla2.controller.BuscarPlanillasController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="66.0" text="Parámetros" />
+      <JFXTextField fx:id="txtCodigo" layoutX="13.0" layoutY="75.0" promptText="Codigo" />
+      <JFXTextField fx:id="txtID" layoutX="14.0" layoutY="137.0" promptText="ID" />
+      <JFXTextField fx:id="txtPlanilla_Mes" layoutX="13.0" layoutY="200.0" promptText="Planilla por Mes" />
+      <Separator layoutX="201.0" layoutY="14.0" orientation="VERTICAL" prefHeight="384.0" prefWidth="8.0" />
+      <TableView fx:id="Table_Buscar" layoutX="235.0" layoutY="100.0" onMousePressed="#MostrarDatos" prefHeight="200.0" prefWidth="361.0">
+         <columns>
+            <TableColumn fx:id="Col_Codigo" prefWidth="120.0" text="Codigo" />
+            <TableColumn fx:id="Col_ID" prefWidth="120.0" text="Id" />
+            <TableColumn fx:id="Col_Planilla" prefWidth="120.0" text="Planilla Por Mes" />
+         </columns>
+      </TableView>
+      <Label layoutX="235.0" layoutY="23.0" prefHeight="17.0" prefWidth="146.0" text="Busqueda de Planilla" />
+      <JFXButton layoutX="13.0" layoutY="300.0" onAction="#Filtrar" prefHeight="25.0" prefWidth="135.0" text="Filtrar" />
+   </children>
+</AnchorPane>
