@@ -84,7 +84,7 @@ public class EmpleadosController extends Controller implements Initializable {
     private JFXDatePicker dtpFSalida;
     @FXML
     private ToggleGroup tggGenero;
-
+    
     EmpleadoDto empleado;
     List<Node> requeridos = new ArrayList<>();
 
@@ -181,6 +181,7 @@ public class EmpleadosController extends Controller implements Initializable {
         dtpFSalida.valueProperty().bindBidirectional(empleado.empFsalida);
         chkActivo.selectedProperty().bindBidirectional(empleado.empEstado);
         chkAdministrador.selectedProperty().bindBidirectional(empleado.empAdministrador);
+        BindingUtils.bindToggleGroupToProperty(tggGenero, empleado.empGenero);
         // todo
     }
 
@@ -197,6 +198,7 @@ public class EmpleadosController extends Controller implements Initializable {
         dtpFSalida.valueProperty().unbindBidirectional(empleado.empFsalida);
         chkActivo.selectedProperty().unbindBidirectional(empleado.empEstado);
         chkAdministrador.selectedProperty().unbindBidirectional(empleado.empAdministrador);
+        BindingUtils.unbindToggleGroupToProperty(tggGenero, empleado.empGenero);
         //  todo
     }
 
@@ -224,7 +226,8 @@ public class EmpleadosController extends Controller implements Initializable {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar empleado", getStage(), invalidos);
             } else {
                 EmpleadoService service = new EmpleadoService();
-                empleado.setEmpGenero("M");
+                //empleado.setEmpGenero("M");
+                empleado.setEmpVersion(empleado.getEmpVersion()+1);
                 Respuesta resp = service.guardarEmpleado(empleado);
                 if (!resp.getEstado()) {
                     new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar empleado", getStage(), resp.getMensaje());
