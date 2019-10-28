@@ -292,7 +292,7 @@ public class TipoPlanillasController extends Controller implements Initializable
 
     @FXML
     private void eliminarRegistro(ActionEvent event) {
-        /*try {
+        try {
             if (tipoPlanilla.getTplaId() == null) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar tipo planilla", getStage(), "Debe cargar el tipo de planilla que desea eliminar.");
             } else {
@@ -309,7 +309,7 @@ public class TipoPlanillasController extends Controller implements Initializable
         } catch (Exception ex) {
             Logger.getLogger(EmpleadosController.class.getName()).log(Level.SEVERE, "Error eliminando el tipo planilla.", ex);
             new Mensaje().showModal(Alert.AlertType.ERROR, "Eliminar tipo planilla", getStage(), "Ocurrio un error eliminando el tipo planilla.");
-        }*/
+        }
     }
 
     @FXML
