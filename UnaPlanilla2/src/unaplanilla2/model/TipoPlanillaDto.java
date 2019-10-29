@@ -48,6 +48,7 @@ public class TipoPlanillaDto {
     ObservableList<EmpleadoDto> empleados;
     @XmlTransient
     List<EmpleadoDto> empleadosEliminados;
+    
 
     public TipoPlanillaDto() {
         this.modificado = false;

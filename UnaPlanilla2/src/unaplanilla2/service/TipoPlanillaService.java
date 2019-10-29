@@ -77,16 +77,18 @@ public class TipoPlanillaService {
         try {
             Request request = new Request("TipoPlanillaController/guardar");
             request.post(tipoPlanillaDto);
+            
             if (request.isError()) {
                 return new Respuesta(false, request.getError(), "");
             }
-            EmpleadoDto empleadoDto = (EmpleadoDto) request.readEntity(EmpleadoDto.class);
-            return new Respuesta(true, "", "", "TipoPlanilla", empleadoDto);
+            TipoPlanillaDto planilla = (TipoPlanillaDto) request.readEntity(TipoPlanillaDto.class);
+            return new Respuesta(true, "", "", "TipoPlanilla", planilla);
         } catch (Exception ex) {
             Logger.getLogger(EmpleadoService.class.getName()).log(Level.SEVERE, "Error guardando la planilla.", ex);
             return new Respuesta(false, "Error guardando el Planilla.", "guardarPlanilla " + ex.getMessage());
         }
     }
+        
 
     public Respuesta eliminarTipoPlanilla(Long id) {
         try {
