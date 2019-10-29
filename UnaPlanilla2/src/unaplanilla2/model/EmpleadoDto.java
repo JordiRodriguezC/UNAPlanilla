@@ -1,4 +1,3 @@
-
 package unaplanilla2.model;
 
 import java.time.LocalDate;
@@ -82,10 +81,11 @@ public class EmpleadoDto {
     }
 
     public Long getEmpId() {
-        if(empId.get()!=null && !empId.get().isEmpty())
+        if (empId.get() != null && !empId.get().isEmpty()) {
             return Long.valueOf(empId.get());
-        else
+        } else {
             return null;
+        }
     }
 
     public void setEmpId(Long empId) {
@@ -185,7 +185,7 @@ public class EmpleadoDto {
     }
 
     public String getEmpEstado() {
-        return empEstado.getValue()?"A":"I";
+        return empEstado.getValue() ? "A" : "I";
     }
 
     public void setEmpEstado(String empEstado) {
@@ -207,9 +207,7 @@ public class EmpleadoDto {
     public void setEmpVersion(Long empVersion) {
         this.empVersion = empVersion;
     }
-    
-    
-    
+
     @Override
     public String toString() {
         return "EmpleadoDto{" + "empId=" + empId + ", empNombre=" + empNombre + ", empPapellido=" + empPapellido + ", empSapellido=" + empSapellido + ", empCedula=" + empCedula + ", empGenero=" + empGenero + ", empCorreo=" + empCorreo + ", empAdministrador=" + empAdministrador + ", empUsuario=" + empUsuario + ", empClave=" + empClave + ", empFingreso=" + empFingreso + ", empFsalida=" + empFsalida + ", empEstado=" + empEstado + '}';

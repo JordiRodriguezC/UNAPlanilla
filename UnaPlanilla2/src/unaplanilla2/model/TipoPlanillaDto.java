@@ -33,22 +33,21 @@ public class TipoPlanillaDto {
     @XmlTransient
     public SimpleStringProperty tplaPlaxmes;
     @XmlTransient
-    private Integer tplaAnoultpla;
+    public  Integer tplaAnoultpla;
     @XmlTransient
-    private Integer tplaMesultpla;
+    public Integer tplaMesultpla;
     @XmlTransient
-    private Integer tplaNumultpla;
+    public Integer tplaNumultpla;
     @XmlTransient
     public SimpleBooleanProperty tplaEstado;
     @XmlTransient
-    private Boolean modificado;
+    public  Boolean modificado;
     @XmlTransient
-    private Long tplaVersion;
+    public  Long  tplaVersion;
     @XmlTransient
     ObservableList<EmpleadoDto> empleados;
     @XmlTransient
     List<EmpleadoDto> empleadosEliminados;
-    
 
     public TipoPlanillaDto() {
         this.modificado = false;
@@ -58,12 +57,15 @@ public class TipoPlanillaDto {
         this.tplaPlaxmes = new SimpleStringProperty();
         this.tplaEstado = new SimpleBooleanProperty(true);
         this.tplaVersion = new Long(0);
+        /*this.tplaMesultpla = new SimpleStringProperty();
+        this.tplaNumultpla = new SimpleStringProperty();
+        this.tplaAnoultpla = new SimpleStringProperty();*/
         empleados = FXCollections.observableArrayList();
         empleadosEliminados = new ArrayList<>();
     }
 
     public Long getTplaId() {
-        if (tplaId.get() != null && !tplaId.get().isEmpty()) {
+         if (tplaId.get() != null && !tplaId.get().isEmpty()) {
             return Long.valueOf(tplaId.get());
         } else {
             return null;
@@ -71,7 +73,7 @@ public class TipoPlanillaDto {
     }
 
     public void setTplaId(Long tplaId) {
-        this.tplaId.set(tplaId.toString());
+        this.tplaId.setValue(tplaId.toString());
     }
 
     public String getTplaCodigo() {
@@ -79,7 +81,7 @@ public class TipoPlanillaDto {
     }
 
     public void setTplaCodigo(String tplaCodigo) {
-        this.tplaCodigo.set(tplaCodigo);
+        this.tplaCodigo.setValue(tplaCodigo);
     }
 
     public String getTplaDescripcion() {
@@ -87,7 +89,7 @@ public class TipoPlanillaDto {
     }
 
     public void setTplaDescripcion(String tplaDescripcion) {
-        this.tplaDescripcion.set(tplaDescripcion);
+        this.tplaDescripcion.setValue(tplaDescripcion);
     }
 
     public Integer getTplaPlaxmes() {
@@ -99,11 +101,16 @@ public class TipoPlanillaDto {
     }
 
     public void setTplaPlaxmes(Integer tplaPlaxmes) {
-        this.tplaPlaxmes.set(tplaPlaxmes.toString());
+        this.tplaPlaxmes.setValue(tplaPlaxmes.toString());
     }
 
     public Integer getTplaAnoultpla() {
         return tplaAnoultpla;
+        /* if (tplaAnoultpla.get() != null && !tplaAnoultpla.get().isEmpty()) {
+            return Integer.valueOf(tplaAnoultpla.get());
+        } else {
+            return null;
+        }*/
     }
 
     public void setTplaAnoultpla(Integer tplaAnoultpla) {
@@ -112,6 +119,11 @@ public class TipoPlanillaDto {
 
     public Integer getTplaMesultpla() {
         return tplaMesultpla;
+        /*if (tplaMesultpla.get() != null && !tplaMesultpla.get().isEmpty()) {
+            return Integer.valueOf(tplaMesultpla.get());
+        } else {
+            return null;
+        }*/
     }
 
     public void setTplaMesultpla(Integer tplaMesultpla) {
@@ -120,18 +132,24 @@ public class TipoPlanillaDto {
 
     public Integer getTplaNumultpla() {
         return tplaNumultpla;
+        /*if (tplaNumultpla.get() != null && !tplaNumultpla.get().isEmpty()) {
+            return Integer.valueOf(tplaNumultpla.get());
+        } else {
+            return null;
+        }*/
     }
 
     public void setTplaNumultpla(Integer tplaNumultpla) {
+        
         this.tplaNumultpla = tplaNumultpla;
     }
 
-    public String getTplaEstado() {
-        return tplaEstado.getValue() ? "A" : "I";
+    public Boolean getTplaEstado() {
+        return tplaEstado.get();
     }
 
-    public void setTplaEstado(String tplaEstado) {
-        this.tplaEstado.setValue(tplaEstado.equalsIgnoreCase("A"));
+    public void setTplaEstado(Boolean tplaEstado) {
+        this.tplaEstado.setValue(tplaEstado);
     }
 
     public Boolean getModificado() {
@@ -140,6 +158,14 @@ public class TipoPlanillaDto {
 
     public void setModificado(Boolean modificado) {
         this.modificado = modificado;
+    }
+
+    public Long getTplaVersion() {
+        return tplaVersion;
+    }
+
+    public void setTplaVersion(Long tplaVersion) {
+        this.tplaVersion = tplaVersion;
     }
 
     public ObservableList<EmpleadoDto> getEmpleados() {
@@ -158,19 +184,10 @@ public class TipoPlanillaDto {
         this.empleadosEliminados = empleadosEliminados;
     }
 
-    public Long getTplaVersion() {
-        return tplaVersion;
-    }
-
-    public void setTplaVersion(Long tplaVersion) {
-        this.tplaVersion = tplaVersion;
-    }
-
+    
     @Override
     public String toString() {
         return "TipoPlanillaDto{" + "tplaId=" + tplaId + ", tplaCodigo=" + tplaCodigo + ", tplaDescripcion=" + tplaDescripcion + ", tplaPlaxmes=" + tplaPlaxmes + ", tplaAnoultpla=" + tplaAnoultpla + ", tplaMesultpla=" + tplaMesultpla + ", tplaNumultpla=" + tplaNumultpla + ", tplaEstado=" + tplaEstado + ", modificado=" + modificado + ", tplaVersion=" + tplaVersion + ", empleados=" + empleados + ", empleadosEliminados=" + empleadosEliminados + '}';
     }
-
-    
 
 }
